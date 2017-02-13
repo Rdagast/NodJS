@@ -4,12 +4,38 @@ var fs = require('fs');
 
 // Permet de créer une route qui map l'url "/" en GET
 router.get('/', function(req, res) {
-    // Permet de retrouver des résultats sur un modèle
-    Person.find({}).then(function(persons) {
-        // Permet d'afficher une vue et de lui passer des paramètres
-        res.render('home.ejs', { persons: persons});
-    });
+	
 
+    
+    // Permet de retrouver des résultats sur un modèle
+    
+        // Permet d'afficher une vue et de lui passer 
+        var currentPage = req.query.page; 
+	    var nbItemPage = 100;
+	    Person.count().then(function(count) {
+	    	Person.find({}).then(function(persons) {
+	    		var nbItem = count;
+	    		 var nbPage = Math.ceil(nbItem / nbItemPage); 
+			     if(currentPage == 0){
+			     	currentPage = 1;
+			     }
+			     else if(!currentPage){
+			     	currentPage = 1;
+			     }
+			    var nbmin = (currentPage * nbItemPage) - nbItemPage;
+
+			    	Person.find().skip(nbmin).limit(nbItemPage).exec(function(err, persons) {
+		        if (err) {
+		            return res.status(400).send({
+		                message: err
+		            });
+		        } else {
+
+		           res.render('home.ejs', {nbPage : nbPage , persons : persons , currentPage: currentPage});
+		        }
+		    });
+	    }); 
+	});
 });
 
 // Permet de créer une route qui map l'url "/hello" en GET
