@@ -26,6 +26,14 @@
                 <li><%= p.firstname + ' / ' + p.lastname  + ' / ' + p.gender + ' / ' + p.age + ' / ' + p.company + ' / ' + p.departement + ' / ' + p.email + ' / ' + p.city + ' / ' + p.country%></li>
             <% }); %>
             </ul>
+
+            <ul id="list" class="pagination">
+            <% for(var i = 1; i < nbPage; i++) { %>
+                <li class="page-item"><a class="page-link" href="/?page=<%= i %>"> <%= i %> </a></li>
+            <% }
+
+            %>
+            </ul>
         </div>
     </body>
 </html>
