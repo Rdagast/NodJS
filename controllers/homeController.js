@@ -139,10 +139,9 @@ router.get('/req5', function(req, res) {
   },
   {$sort:{percent:-1}},
   {$limit:1}
-]).then(function(percent,company){
-  console.log(percent);
-  console.log(company);
-  res.render('stats.ejs', { name : "req5" , percent: percent , company: company});
+]).then(function(womens){
+
+  res.render('stats.ejs', { name : "req5" , womens: womens});
   });
 });
 

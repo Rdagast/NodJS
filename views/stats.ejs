@@ -47,8 +47,10 @@
               <h3><%= count %> utilisateurs ont une ip au format XXX.129.XXX.XXX</h3>
             <% }
             if(name == "req5") { %>
-              <li><%= company + ' : ' + percent %></li>
-            <% } %>
+              <% womens.forEach(function(w) { %>
+                  <li><%= w.company + ' : ' + w.percent*100 + '% de femmes' %></li>
+              <% });
+            } %>
 
 
             </ul>
