@@ -4,18 +4,18 @@ var fs = require('fs');
 
 // Permet de créer une route qui map l'url "/" en GET
 router.get('/', function(req, res) {
-	
 
-    
+
+
     // Permet de retrouver des résultats sur un modèle
-    
-        // Permet d'afficher une vue et de lui passer 
-        var currentPage = req.query.page; 
+
+        // Permet d'afficher une vue et de lui passer
+        var currentPage = req.query.page;
 	    var nbItemPage = 100;
 	    Person.count().then(function(count) {
 	    	Person.find({}).then(function(persons) {
 	    		var nbItem = count;
-	    		 var nbPage = Math.ceil(nbItem / nbItemPage); 
+	    		 var nbPage = Math.ceil(nbItem / nbItemPage);
 			     if(currentPage == 0){
 			     	currentPage = 1;
 			     }
@@ -34,7 +34,7 @@ router.get('/', function(req, res) {
 		           res.render('home.ejs', {nbPage : nbPage , persons : persons , currentPage: currentPage});
 		        }
 		    });
-	    }); 
+	    });
 	});
 });
 

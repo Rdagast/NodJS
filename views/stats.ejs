@@ -10,6 +10,7 @@
     <body>
         <%- include('shared/menu') %>
         <div class="container">
+          <div>
             <a class="btn btn-primary pull-right" href="/req1">
               <span></span> homme 20/40 ans
             </a>
@@ -25,8 +26,12 @@
             <a class="btn btn-primary pull-right" href="/req5">
               <span></span> le plus de femme
             </a>
-
-            <h1>Liste des peronnes</h1>
+            <a class="btn btn-primary pull-left" href="/">
+              <span></span> retour
+            </a>
+          </div>
+          <div>
+            <h1>Stats</h1>
 
             <ul>
             <% if(name == "req1" || name == "req2") {
@@ -51,9 +56,8 @@
                   <li><%= w.company + ' : ' + w.percent*100 + '% de femmes' %></li>
               <% });
             } %>
-
-
             </ul>
+          </div>
         </div>
     </body>
 </html>
