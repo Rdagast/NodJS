@@ -12,6 +12,43 @@
         <div class="container">
             <a class="btn btn-danger pull-right" href="/">Retour</a>
             <h1>Ajouter une personne</h1>
+
+            <form action="/Add" method="post">
+              <label for="firstname"  class="sr-only">firstname</label>
+              <input type="text" id="firstname" name="firstname" class="form-control" placeholder="firstname" required autofocus>
+
+              <label for="lastname"  class="sr-only">lastname</label>
+              <input type="text" id="lastname" name="lastname" class="form-control" placeholder="lastname" required autofocus>
+
+              <select name="gender">
+                <option value="Male" selected>Homme</option>
+                <option value="Female">Femme</option>
+              </select>
+
+              <label for="age"  class="sr-only">age</label>
+              <input type="text" id="age" name="age" class="form-control" placeholder="age" required autofocus>
+
+              <label for="company"  class="sr-only">company</label>
+              <input type="text" id="company" name="company" class="form-control" placeholder="company" required autofocus>
+
+              <label for="departement"  class="sr-only">departement</label>
+              <input type="text" id="departement" name="departement" class="form-control" placeholder="departement" required autofocus>
+
+              <label for="email"  class="sr-only">email</label>
+              <input type="text" id="email" name="email" class="form-control" placeholder="email" required autofocus>
+
+              <label for="city"  class="sr-only">city</label>
+              <input type="text" id="city" name="city" class="form-control" placeholder="city" required autofocus>
+
+              <label for="country"  class="sr-only">country</label>
+              <input type="text" id="country" name="country" class="form-control" placeholder="country" required autofocus>
+
+              <label for="ip_address"  class="sr-only">ip_address</label>
+              <input type="text" id="ip_address" name="ip_address" class="form-control" placeholder="ip_address" required autofocus>
+
+
+              <input class="btn btn-lg btn-primary btn-block" type="submit">
+            </form>
         </div>
     </body>
 </html>
