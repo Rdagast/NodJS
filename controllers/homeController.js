@@ -34,7 +34,7 @@ router.post('/add', function(req, res) {
     var firstname = req.body.firstname;
     var lastname = req.body.lastname;
     var gender = req.body.gender;
-    var age = req.body.age;
+    var age = Number(req.body.age);
     var company = req.body.company;
     var departement = req.body.departement;
     var email = req.body.email;
@@ -76,7 +76,7 @@ router.get('/loadData', function(req, res){
           firstname: arrayString[0],
           lastname: arrayString[1],
           gender: arrayString[2],
-          age: arrayString[3],
+          age: Number(arrayString[3]),
           company: arrayString[4],
           departement: arrayString[5],
           email: arrayString[6],
@@ -92,5 +92,33 @@ router.get('/loadData', function(req, res){
     });
 });
 
+router.get('/stats', function(req, res) {
+
+    res.redirect('/req1');
+});
+
+router.get('/req1', function(req, res) {
+  Person.find({gender: "Male",  age: { $gte: 20, $lte: 40 } , company: { $in: [ "Quamba", "Zoomcast" ] }}).then(function(persons){
+    res.render('stats.ejs', { persons: persons , name : "req1"});
+  });
+});
+
+router.get('/req2', function(req, res) {
+  Person.find({gender: "Female", company: "Meevee"}).sort({age:-1}).limit(1).then(function(persons){
+    res.render('stats.ejs', { persons: persons , name : "req2"});
+  });
+});
+
+router.get('/req3', function(req, res) {
+  Person.find({ip_address: {$regex: /\d{1,3}\.129\.\d{1,3}\.\d{1,3}/}}).then(function(persons){
+    res.render('stats.ejs', { persons: persons , name : "req3"});
+  });
+});
+
+router.get('/req4', function(req, res) {
+  Person.find({email: {$regex: /\d/}}).then(function(persons){
+    res.render('stats.ejs', { persons: persons , name : "req4"});
+  });
+});
 
 module.exports = router;

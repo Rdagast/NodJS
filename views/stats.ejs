@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="/public/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/public/css/main.css" />
+        <script src="/public/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <%- include('shared/menu') %>
+        <div class="container">
+            <a class="btn btn-primary pull-right" href="/req1">
+              <span></span> homme 20/40
+            </a>
+            <a class="btn btn-primary pull-right" href="/req2">
+              <span></span> plus vielle femme
+            </a>
+            <a class="btn btn-primary pull-right" href="/req3">
+              <span></span> ip en 129
+            </a>
+            <a class="btn btn-primary pull-right" href="/req4">
+              <span></span> 1 chiffre dans le mail
+            </a>
+
+
+            <h1>Liste des peronnes</h1>
+
+            <ul>
+            <% if(name == "req1" || name == "req2") {
+                persons.forEach(function(p) { %>
+                  <li><%= p.firstname + ' / ' + p.lastname  + ' / ' + p.gender + ' / ' + p.age + ' / ' + p.company + ' / ' + p.departement + ' / ' + p.email + ' / ' + p.city + ' / ' + p.country%></li>
+              <% });
+            }
+            if(name == "req3") { %>
+              <% persons.forEach(function(p) { %>
+                  <li><%= p.firstname %></li>
+              <% });
+            }
+            if(name == "req4") {
+              var count =0;
+              persons.forEach(function(p) {
+                 count ++;
+              }); %>
+              <h3><%= count %> utilisateurs ont une ip au format XXX.129.XXX.XXX</h3>
+            <% }%>
+
+            </ul>
+        </div>
+    </body>
+</html>
