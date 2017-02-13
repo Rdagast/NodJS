@@ -121,4 +121,29 @@ router.get('/req4', function(req, res) {
   });
 });
 
+router.get('/req5', function(req, res) {
+  Person.aggregate([
+  {$group:
+    {
+      _id:"$company",
+      nbrFemmes:{$sum: {$cond: {if: {$eq:["$gender","Female"]}, then:1, else:0 } } },
+      totalPersonnes:{$sum:1},
+    }
+  },
+  {$project:
+    {
+      _id:0,
+      company:"$_id",
+      percent:{$divide:["$nbrFemmes","$totalPersonnes"]}
+    }
+  },
+  {$sort:{percent:-1}},
+  {$limit:1}
+]).then(function(percent,company){
+  console.log(percent);
+  console.log(company);
+  res.render('stats.ejs', { name : "req5" , percent: percent , company: company});
+  });
+});
+
 module.exports = router;
