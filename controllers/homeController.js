@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 
 
     // Permet de retrouver des résultats sur un modèle
-<<<<<<< HEAD
+
     if(!req.query.page){
     	req.query.page + 1;
 	}	
@@ -18,20 +18,20 @@ router.get('/', function(req, res) {
         if(currentPage<=0){
      		 currentPage=1;
 		}
-=======
+
 
         // Permet d'afficher une vue et de lui passer
-        var currentPage = req.query.page;
->>>>>>> origin/master
+       
+
 	    var nbItemPage = 100;
 	    
 	    	Person.find({}).then(function(persons) {
-<<<<<<< HEAD
+
 	    		var nbItem = persons.length;
-	    		 var nbPage = Math.ceil(nbItem / nbItemPage); 
+	    		 //var nbPage = Math.ceil(nbItem / nbItemPage); 
 			     
-=======
-	    		var nbItem = count;
+
+	    		//var nbItem = count;
 	    		 var nbPage = Math.ceil(nbItem / nbItemPage);
 			     if(currentPage == 0){
 			     	currentPage = 1;
@@ -39,7 +39,7 @@ router.get('/', function(req, res) {
 			     else if(!currentPage){
 			     	currentPage = 1;
 			     }
->>>>>>> origin/master
+
 			    var nbmin = (currentPage * nbItemPage) - nbItemPage;
 			    var table = []; 
 				
@@ -63,9 +63,6 @@ router.get('/', function(req, res) {
 				    table.push("...");
 
 				}	
-				    
-				    
-				    
 				    for (var i = nbPage -2; i <= nbPage ; i++) {
 				    	if(table.indexOf(i) === -1){
 				    	table.push(i);
