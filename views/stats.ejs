@@ -10,8 +10,9 @@
     <body>
         <%- include('shared/menu') %>
         <div class="container">
+          <div>
             <a class="btn btn-primary pull-right" href="/req1">
-              <span></span> homme 20/40
+              <span></span> homme 20/40 ans
             </a>
             <a class="btn btn-primary pull-right" href="/req2">
               <span></span> plus vielle femme
@@ -22,9 +23,15 @@
             <a class="btn btn-primary pull-right" href="/req4">
               <span></span> 1 chiffre dans le mail
             </a>
-
-
-            <h1>Liste des peronnes</h1>
+            <a class="btn btn-primary pull-right" href="/req5">
+              <span></span> le plus de femme
+            </a>
+            <a class="btn btn-primary pull-left" href="/">
+              <span></span> retour
+            </a>
+          </div>
+          <div>
+            <h1>Stats</h1>
 
             <ul>
             <% if(name == "req1" || name == "req2") {
@@ -43,9 +50,14 @@
                  count ++;
               }); %>
               <h3><%= count %> utilisateurs ont une ip au format XXX.129.XXX.XXX</h3>
-            <% }%>
-
+            <% }
+            if(name == "req5") { %>
+              <% womens.forEach(function(w) { %>
+                  <li><%= w.company + ' : ' + w.percent*100 + '% de femmes' %></li>
+              <% });
+            } %>
             </ul>
+          </div>
         </div>
     </body>
 </html>

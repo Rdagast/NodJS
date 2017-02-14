@@ -4,10 +4,11 @@ var fs = require('fs');
 
 // Permet de créer une route qui map l'url "/" en GET
 router.get('/', function(req, res) {
-	
 
-    
+
+
     // Permet de retrouver des résultats sur un modèle
+<<<<<<< HEAD
     if(!req.query.page){
     	req.query.page + 1;
 	}	
@@ -17,12 +18,28 @@ router.get('/', function(req, res) {
         if(currentPage<=0){
      		 currentPage=1;
 		}
+=======
+
+        // Permet d'afficher une vue et de lui passer
+        var currentPage = req.query.page;
+>>>>>>> origin/master
 	    var nbItemPage = 100;
 	    
 	    	Person.find({}).then(function(persons) {
+<<<<<<< HEAD
 	    		var nbItem = persons.length;
 	    		 var nbPage = Math.ceil(nbItem / nbItemPage); 
 			     
+=======
+	    		var nbItem = count;
+	    		 var nbPage = Math.ceil(nbItem / nbItemPage);
+			     if(currentPage == 0){
+			     	currentPage = 1;
+			     }
+			     else if(!currentPage){
+			     	currentPage = 1;
+			     }
+>>>>>>> origin/master
 			    var nbmin = (currentPage * nbItemPage) - nbItemPage;
 			    var table = []; 
 				
@@ -66,7 +83,7 @@ router.get('/', function(req, res) {
 		           res.render('home.ejs', {nbPage : nbPage , persons : persons , currentPage: currentPage , table: table});
 		        }
 		    });
-	    }); 
+	    });
 	});
 
 
@@ -176,6 +193,30 @@ router.get('/req3', function(req, res) {
 router.get('/req4', function(req, res) {
   Person.find({email: {$regex: /\d/}}).then(function(persons){
     res.render('stats.ejs', { persons: persons , name : "req4"});
+  });
+});
+
+router.get('/req5', function(req, res) {
+  Person.aggregate([
+  {$group:
+    {
+      _id:"$company",
+      nbrFemmes:{$sum: {$cond: {if: {$eq:["$gender","Female"]}, then:1, else:0 } } },
+      totalPersonnes:{$sum:1},
+    }
+  },
+  {$project:
+    {
+      _id:0,
+      company:"$_id",
+      percent:{$divide:["$nbrFemmes","$totalPersonnes"]}
+    }
+  },
+  {$sort:{percent:-1}},
+  {$limit:1}
+]).then(function(womens){
+
+  res.render('stats.ejs', { name : "req5" , womens: womens});
   });
 });
 
