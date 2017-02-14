@@ -26,8 +26,8 @@ router.get('/', function(req, res) {
 	    var nbItemPage = 100;
 	    
 	    	Person.find({}).then(function(persons) {
-
-	    		var nbItem = persons.length;
+			
+				var nbItem = persons.length;
 	    		 //var nbPage = Math.ceil(nbItem / nbItemPage); 
 			     
 
@@ -80,6 +80,8 @@ router.get('/', function(req, res) {
 		           res.render('home.ejs', {nbPage : nbPage , persons : persons , currentPage: currentPage , table: table});
 		        }
 		    });
+
+	    		
 	    });
 	});
 
