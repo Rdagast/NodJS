@@ -20,12 +20,43 @@
                 <span></span> Voir les stats
             </a>
             <h1>Liste des peronnes</h1>
-
-            <ul>
-            <% persons.forEach(function(p) { %>
-                <li><%= p.firstname + ' / ' + p.lastname  + ' / ' + p.gender + ' / ' + p.age + ' / ' + p.company + ' / ' + p.departement + ' / ' + p.email + ' / ' + p.city + ' / ' + p.country%></li>
+            <table class="table">
+                <thead>
+                    <tr>
+              
+                    <th>Prenom</th>
+                    <th>Nom</th>
+                    <th>Age</th>
+                    <th>Genre</th>
+                    <th>Entreprise</th>
+                    <th>Departement</th>
+                    <th>Email</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
+                    <th style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                 <% persons.forEach(function(p) { %>
+                <!-- <li><%= p.firstname + ' / ' + p.lastname  + ' / ' + p.gender + ' / ' + p.age + ' / ' + p.company + ' / ' + p.departement + ' / ' + p.email + ' / ' + p.city + ' / ' + p.country%></li> -->
+                <tr>
+                    <!-- <td><%= p._id %></td> -->
+                    <td><%= p.firstname %></td>
+                    <td><%= p.lastname %></td>
+                    <td><%= p.age %></td>
+                    <td><%= p.gender %></td>
+                    <td><%= p.company %></td>
+                    <td><%= p.departement %></td>
+                    <td><%= p.email %></td>
+                    <td><%= p.city %></td>
+                    <td><%= p.country %></td>
+                    
+          
+                </tr>
             <% }); %>
-            </ul>
+            </table>
+            <!-- <ul> -->
+           
+            <!-- </ul> -->
 
             <ul id="list" class="pagination">
             <% if(currentPage <= 1){%>
