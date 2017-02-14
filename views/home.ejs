@@ -70,9 +70,13 @@
             <% for(var i = 0; i < table.length; i++) { %>
                 <!-- <li class="page-item"><a class="page-link" href="/?page=<%= i %>"> <%= i %> </a></li> -->
                 <% if(table[i] == currentPage){ %>
-                    <li class="active"><a href='?page=<%= table[i] %>'><%= table[i] %></a></li>
+                         <li class="active"><a  href='?page=<%= table[i] %>'><%= table[i] %></a></li>
                 <% } else{ %>
+                 <% if(table[i] == "..."){ %>
+                    <li class="disabled"><a disabled="disabled"><%= table[i] %></a></li>
+                    <% } else{ %>
                     <li ><a href='?page=<%= table[i] %>'><%= table[i] %></a></li>
+                    <% } %>
                  <% } %>
             <% }
 
