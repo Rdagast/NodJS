@@ -49,14 +49,17 @@ router.get('/', function(req, res) {
 			    }
 				if(currentPage < nbPage){
 				    if(currentPage > 3){
+
 				   	 table.push("...");
 					}
-				    
-				    	for (var i = currentPage -1; i <= (currentPage + 1); i++) {
+				    	if(currentPage > 1 ) {
+				    		for (var i = currentPage -1; i <= (currentPage + 1); i++) {
 				    	//console.log(i, table.indexOf(i));
 				    	if(table.indexOf(i) === -1){
 				    		table.push(i);
 				    	}
+				    	}
+				    	
 				    	
 
 				    }
